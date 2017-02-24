@@ -1,6 +1,8 @@
 "use strict";
 
-const DEFAULT_CONFIG_TTL = -1;
+const Criteria = require("./criteria");
+const Config = require("./config");
+
 const DEFAULT_OPTIONS_BROADCAST = false;
 
 class Options {
@@ -9,6 +11,7 @@ class Options {
         this.criteria = new Criteria();
         this.apps = [];
         this.broadcast = DEFAULT_OPTIONS_BROADCAST;
+        this.appId;
     }
 
     get alias() {
@@ -21,21 +24,6 @@ class Options {
 
     set appId(appId) {
         this.apps[0] = appId;
-    }
-}
-
-class Criteria {
-    constructor() {
-        this.alias = [];
-        this.deviceType;
-        this.categories;
-        this.variants;
-    }
-}
-
-class Config {
-    constructor() {
-        this.ttl = DEFAULT_CONFIG_TTL;
     }
 }
 

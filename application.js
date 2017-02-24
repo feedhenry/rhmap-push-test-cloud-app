@@ -4,10 +4,14 @@ const mbaasApi = require("fh-mbaas-api");
 const mbaasExpress = mbaasApi.mbaasExpress();
 const express = require("express");
 const cors = require("cors");
-const Logger = require("./util/logger");
+const Logger = require("./src/util/logger");
+const AuthChecker = require("./src/util/auth-checker");
 
-// All log client initialisation here
-Logger.init();
+// All log client initialization here
+new Logger().init();
+
+// Check credentials for Apps here
+new AuthChecker().checkAuthFile();
 
 // list the endpoints which you want to make securable here
 const securableEndpoints = [];
@@ -22,17 +26,17 @@ app.use("/sys", mbaasExpress.sys(securableEndpoints));
 app.use("/mbaas", mbaasExpress.mbaas);
 
 // allow serving of static files from the public directory
-app.use(express.static(__dirname + "/public"));
+app.use(express.static(`${__dirname}/public`));
 
 // Note: important that this is added just before your own Routes
 app.use(mbaasExpress.fhmiddleware());
 
 // Routes
-const push = require("./route/push");
-const pushUPS = require("./route/push-ups");
+const pushFH = require("./src/route/push-fh");
+const pushUPS = require("./src/route/push-ups");
 
-app.use("/push", push);
-app.use("/push-ups", pushUPS);
+app.use("/push/fh", pushFH);
+app.use("/push/ups", pushUPS);
 
 // Important that this is last!
 app.use(mbaasExpress.errorHandler());
