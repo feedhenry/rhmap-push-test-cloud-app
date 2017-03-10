@@ -35,3 +35,13 @@ jspm_packages
 
 # Optional REPL history
 .node_repl_history
+
+# VS Code
+.vscode
+cSpell.json
+
+# SonarQube
+.sonar
+
+# Auth (This is important to prevent acctidentally pushing sensitive data to a public repo)
+# app-auth.json

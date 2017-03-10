@@ -1,0 +1,31 @@
+{
+  "name": "rhmap-push-cloud-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app/index.js",
+    "pretest": "node_modules/.bin/eslint app spec --fix",
+    "test": "node_modules/.bin/istanbul cover node_modules/jasmine/bin/jasmine.js"
+  },
+  "author": "",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "async": "^2.1.4",
+    "body-parser": "~1.0.2",
+    "cors": "~2.2.0",
+    "express": "~4.0.0",
+    "fh-mbaas-api": "6.1.4",
+    "request": "2.79.0",
+    "winston": "^2.3.1"
+  },
+  "devDependencies": {
+    "eslint": "^3.16.1",
+    "istanbul": "^0.4.5",
+    "jasmine": "^2.5.3"
+  },
+  "bugs": {
+    "url": "https://github.com/feedhenry/rhmap-push-test-driver.git/issues"
+  },
+  "homepage": "https://github.com/feedhenry/rhmap-push-test-drivergit#readme"
+}

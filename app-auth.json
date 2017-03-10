@@ -1,0 +1,6 @@
+{
+    "myAppId": {
+        "pushApplicationID": "app1234567",
+        "masterSecret": "supersecret!"
+    }
+}
