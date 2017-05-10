@@ -7,18 +7,13 @@ const Criteria = require("../../src/model/criteria");
 describe("UPSAPI", () => {
 
     let api;
-
-    beforeAll(() => {
-        spyOn(UPSAPI.prototype, "getCredentials").and.returnValue(
-            {
-                pushApplicationID: "id",
-                masterSecret: "secret"
-            }
-        );
-    });
+    const credentials = {
+        pushApplicationID: "id",
+        masterSecret: "secret"
+    };
 
     beforeEach(() => {
-        api = new UPSAPI();
+        api = new UPSAPI(credentials);
     });
 
     describe(".sendNotificationToAlias", () => {
@@ -57,6 +52,24 @@ describe("UPSAPI", () => {
             api.sendNotificationsToAliasesInBatch(aliases);
 
             expect(api.post.calls.mostRecent().args[2]).toEqual(notifications);
+        });
+
+    });
+
+    describe(".sendNotificationToVariant", () => {
+
+        it("should send {message, criteria} in the body", () => {
+            spyOn(api, "post");
+
+            const variant = "alias";
+
+            const message = new Message(`Hello ${variant} from rhmap-push-cloud-app!`);
+            const criteria = new Criteria();
+            criteria.alias = [variant];
+
+            api.sendNotificationToAlias(variant);
+
+            expect(api.post.calls.mostRecent().args[2]).toEqual({ message, criteria });
         });
 
     });

@@ -25,6 +25,7 @@ class AuthChecker {
     }
 
     readDataFromJSON() {
+        // TODO: check that the file exists
         const data = fs.readFileSync(this.path, "utf8");
 
         return JSON.parse(data);

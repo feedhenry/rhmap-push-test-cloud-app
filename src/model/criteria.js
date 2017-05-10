@@ -5,7 +5,7 @@ class Criteria {
         this.alias = [];
         this.deviceType;
         this.categories;
-        this.variants;
+        this.variants = [];
     }
 }
 

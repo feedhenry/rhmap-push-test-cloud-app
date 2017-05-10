@@ -25,6 +25,10 @@ class Options {
     set appId(appId) {
         this.apps[0] = appId;
     }
+
+    set variant(variant) {
+        this.criteria.variants[0] = variant;
+    }
 }
 
 module.exports = Options;

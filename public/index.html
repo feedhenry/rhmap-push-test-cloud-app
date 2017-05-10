@@ -4,7 +4,10 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta name="robots" content="noindex, nofollow">
     <meta name="googlebot" content="noindex, nofollow">
-    <script type="text/javascript" src="/js/lib/dummy.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g="
+        crossorigin="anonymous"></script>
+
     <link rel="stylesheet" type="text/css" href="/css/result-light.css">
 
     <style type="text/css">
@@ -14,13 +17,42 @@
             position: absolute;
             bottom: 0px;
         }
-        
+
         .image {
             display: inline-block;
             position: absolute;
             bottom: 0;
         }
-        
+
+        .bubble_container {
+            position: absolute;
+            left: 55%;
+            top: 22%;
+
+            animation: fadein 1s;
+            -webkit-animation: fadein 1s;
+        }
+
+        @keyframes fadein {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @-o-keyframes fadein {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .bubble {
+            width: 160px;
+        }
+
+        #version {
+            position: absolute;
+            top: 19%;
+            left: 32%;
+        }
+
         body {
             overflow: hidden;
         }
@@ -31,6 +63,13 @@
 
 <body>
     <div class="image_container">
+        <div class="bubble_container">
+            <div class="bubble_inner_container">
+                <img src="https://img.clipartfest.com/e1a66d12c2a7cce3882669887c2fca61_-cartoon-bubble-images-comic-bubble-clip-art_1512-1355.png"
+                    alt="bubble" class="bubble">
+                <h1 id="version"></h1>
+            </div>
+        </div>
         <img data-original-width="500" data-original-height="364" data-padding-top="59" data-id="bcKmIWkUMCjVm" data-image_url="https://media.giphy.com/media/bcKmIWkUMCjVm/giphy.gif"
             data-bitly_gif_url="http://gph.is/18hMuOc" data-mp4_url="https://media.giphy.com/media/bcKmIWkUMCjVm/giphy.mp4" data-still="https://media.giphy.com/media/bcKmIWkUMCjVm/giphy_s.gif"
             data-preview-image-url="https://media.giphy.com/media/bcKmIWkUMCjVm/100.gif" data-tumblr_share_url="https://media.giphy.com/media/bcKmIWkUMCjVm/giphy-downsized.gif"
@@ -38,5 +77,10 @@
             id="gif" class="a-gif" src="https://media.giphy.com/media/bcKmIWkUMCjVm/giphy.gif" alt="animated cartoons &amp; comics hello hey welcome">
     </div>
 </body>
+
+<script language="javascript">
+    document.getElementById("version").innerText = "0.1.0";
+
+</script>
 
 </html>

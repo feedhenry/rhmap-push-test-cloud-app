@@ -24,13 +24,13 @@ pushFH.get("/:appId/:alias", (request, response) => {
 
     Logger.log(`[${appId}] Sending push to ${alias} using fh.push().`);
 
-    FHAPI.sendNotificationToAlias(alias, CallbackFactory.getCallback(response, appId, alias));
+    FHAPI.sendNotificationToAlias(alias, CallbackFactory.getCallback(response, alias));
 });
 
 /**
- * Send a push notification to a list of aliases using $fh.push in an async.each() loop. That is, all notifications will be sent simoultaniously but in different requests.
+ * Send a push notification to a list of aliases using $fh.push in an async.each() loop. That is, all notifications will be sent simultaneously but in different requests.
  * The list of aliases must be provided in the request's body in form of array.
- * @param appId pushApplicationID of the mobile app that has the devices.
+ * @param appId ID of the mobile app that has the devices.
  */
 pushFH.post("/:appId", (request, response) => {
     const appId = request.params.appId;
@@ -39,7 +39,7 @@ pushFH.post("/:appId", (request, response) => {
     Logger.log(`[${appId}] Sending push to ${aliases.length} devices asynchronously using fh.push().`);
 
     async.each(aliases,
-        alias => FHAPI.sendNotificationToAlias(alias, CallbackFactory.getCallback(response, appId, alias)),
+        alias => FHAPI.sendNotificationToAlias(alias, CallbackFactory.getCallback(response, alias)),
         err => Logger.error(`[${appId}] Async Error: ${err}.`)
     );
 
@@ -58,6 +58,20 @@ pushFH.post("/:appId/batch", (request, response) => {
     Logger.log(`[${appId}] Sending push to ${aliases.length} devices in a batch using fh.push().`);
 
     FHAPI.sendNotificationToAliasesInBatch(aliases, CallbackFactory.getCallback(response, appId));
+});
+
+/**
+ * Send a push notification to a single variant using $fh.push.
+ * @param appId ID of the mobile app that has the devices.
+ * @param variantId ID of variant that will be receiving the notification.
+ */
+pushFH.get("/:appId/variants/:variantId", (request, response) => {
+    const appId = request.params.appId;
+    const variantId = request.params.variantId;
+
+    Logger.log(`[${appId}] Sending push to variant: ${variantId} using fh.push().`);
+
+    FHAPI.sendNotificationToVariant(variantId, CallbackFactory.getCallback(response, variantId));
 });
 
 module.exports = pushFH;
