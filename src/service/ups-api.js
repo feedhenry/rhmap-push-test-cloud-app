@@ -17,6 +17,7 @@ class UPSAPI {
         this.pushApplicationID = credentials.pushApplicationID;
         this.masterSecret = credentials.masterSecret;
     }
+
     sendNotificationToAlias(alias, callback) {
         Logger.log(`[${alias}] Sending push using fh.push().`);
 

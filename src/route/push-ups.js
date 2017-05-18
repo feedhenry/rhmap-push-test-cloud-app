@@ -23,7 +23,7 @@ const authChecker = new AuthChecker();
  * @param appId ID of the mobile app that will be target of the notification.
  * @param alias Alias that will be target of the notification.
  */
-pushUPS.get("/:appId/:alias", (request, response) => {
+pushUPS.get("/:appId/alias/:alias", (request, response) => {
     const appId = request.params.appId;
     const alias = request.params.alias;
 
@@ -44,7 +44,7 @@ pushUPS.get("/:appId/:alias", (request, response) => {
  * The list of aliases must be provided in the request's body in form of array.
  * @param appId ID of the mobile app that has the devices.
  */
-pushUPS.post("/:appId", (request, response) => {
+pushUPS.post("/:appId/alias", (request, response) => {
     const appId = request.params.appId;
     const aliases = request.body;
 
@@ -70,7 +70,7 @@ pushUPS.post("/:appId", (request, response) => {
  * A list of aliases must be provided in the request's body in form of array.
  * @param appId ID of the mobile app that will be target of the notification.
  */
-pushUPS.post("/:appId/batch", (request, response) => {
+pushUPS.post("/:appId/alias/batch", (request, response) => {
     const appId = request.params.appId;
     const aliases = request.body;
 

@@ -18,7 +18,7 @@ pushFH.use(bodyParser());
  * @param appId ID of the mobile app that will be target of the notification.
  * @param alias Alias that will be target of the notification.
  */
-pushFH.get("/:appId/:alias", (request, response) => {
+pushFH.get("/:appId/alias/:alias", (request, response) => {
     const appId = request.params.appId;
     const alias = request.params.alias;
 
@@ -32,7 +32,7 @@ pushFH.get("/:appId/:alias", (request, response) => {
  * The list of aliases must be provided in the request's body in form of array.
  * @param appId ID of the mobile app that has the devices.
  */
-pushFH.post("/:appId", (request, response) => {
+pushFH.post("/:appId/alias", (request, response) => {
     const appId = request.params.appId;
     const aliases = request.body;
 
@@ -51,7 +51,7 @@ pushFH.post("/:appId", (request, response) => {
  * A list of aliases must be provided in the request's body in form of array.
  * @param appId ID of the mobile app that will be target of the notification.
  */
-pushFH.post("/:appId/batch", (request, response) => {
+pushFH.post("/:appId/alias/batch", (request, response) => {
     const appId = request.params.appId;
     const aliases = request.body;
 
@@ -72,6 +72,20 @@ pushFH.get("/:appId/variants/:variantId", (request, response) => {
     Logger.log(`[${appId}] Sending push to variant: ${variantId} using fh.push().`);
 
     FHAPI.sendNotificationToVariant(variantId, CallbackFactory.getCallback(response, variantId));
+});
+
+/**
+ * Send a push notification to a multiple variant using $fh.push.
+ * App's ID and masterSecret must be provided via basic auth.
+ * A list of variant IDs must be provided in the request's body in form of array.
+ * @param appId ID of the mobile app that has the devices.
+ */
+pushFH.post("/:appId/variants", (request, response) => {
+    const variants = request.body;
+
+    Logger.log(`[${variants.length} variants] Sending push using $fh.push.`);
+
+    FHAPI.sendNotificationToVariants(variants, CallbackFactory.getCallback(response, `${variants.length} variants`));
 });
 
 module.exports = pushFH;

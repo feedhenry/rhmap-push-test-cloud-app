@@ -29,6 +29,10 @@ class Options {
     set variant(variant) {
         this.criteria.variants[0] = variant;
     }
+
+    set variants(variants) {
+        this.criteria.variants = variants;
+    }
 }
 
 module.exports = Options;
