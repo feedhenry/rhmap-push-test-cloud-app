@@ -47,7 +47,7 @@ class FHAPI {
     static sendNotificationToVariants(variants, callback) {
         Logger.log(`[${variants.length} variants] Sending push using fh.push().`);
 
-        const message = new Message(`Hello ${variants.toString()} from rhmap-push-cloud-app!`);
+        const message = new Message(`Hello ${variants.length} variants from rhmap-push-cloud-app!`);
         const options = new Options();
         options.variants = variants;
 
