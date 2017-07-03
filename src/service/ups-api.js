@@ -53,7 +53,7 @@ class UPSAPI {
     }
 
     sendNotificationToVariants(variants, callback) {
-        const message = new Message(`Hello ${variants.length} variants from rhmap-push-cloud-app!`);
+        const message = new Message(`Hello ${variants.toString()} from rhmap-push-cloud-app!`);
         const criteria = new Criteria();
         criteria.variants = variants;
 
