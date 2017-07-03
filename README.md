@@ -8,7 +8,7 @@ Install all dependencies and start it by running:
 ```bash
 $ npm install && npm start
 ```
-You should be able to see if its running by opening http://localhost:8001.
+You should be able to see if it's running by opening http://localhost:8001.
 
 #### RHMAP
 Create a node _Cloud App_ inside your project and push this code to its git repository (git link in _Details_ section), then simply deploy the app (In _Deploy_ section). Remember to select a node version greater than or equal to 4.4.
@@ -27,3 +27,4 @@ The format is like this:
     }
 }
 ```
+Note: this is only necessary when using the push/ups routes.

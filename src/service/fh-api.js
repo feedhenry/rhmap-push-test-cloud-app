@@ -34,6 +34,25 @@ class FHAPI {
         callback(undefined, { statusCode: 404, body: "Not yet implemented" });
     }
 
+    static sendNotificationToVariant(variant, callback) {
+        Logger.log(`[${variant}] Sending push using fh.push().`);
+
+        const message = new Message(`Hello ${variant} from rhmap-push-cloud-app!`);
+        const options = new Options();
+        options.variant = variant;
+
+        $fh.push(message, options, callback);
+    }
+
+    static sendNotificationToVariants(variants, callback) {
+        Logger.log(`[${variants.length} variants] Sending push using fh.push().`);
+
+        const message = new Message(`Hello ${variants.toString()} from rhmap-push-cloud-app!`);
+        const options = new Options();
+        options.variants = variants;
+
+        $fh.push(message, options, callback);
+    }
 }
 
 module.exports = FHAPI;

@@ -4,9 +4,8 @@ const request = require("request");
 const Message = require("../model/message");
 const Criteria = require("../model/criteria");
 const Logger = require("../util/logger");
-const AuthChecker = require("../util/auth-checker");
 
-const PUSH_URL = "http://testing.eteam.skunkhenry.com/api/v2/ag-push/rest/sender";
+const PUSH_URL = "https://testing.zeta.feedhenry.com/api/v2/ag-push/rest/sender";
 const PUSH_BATCH_URL = `${PUSH_URL}/batch`;
 
 /**
@@ -14,14 +13,9 @@ const PUSH_BATCH_URL = `${PUSH_URL}/batch`;
  */
 class UPSAPI {
 
-    constructor(appId) {
-        const credentials = this.getCredentials(appId);
+    constructor(credentials) {
         this.pushApplicationID = credentials.pushApplicationID;
         this.masterSecret = credentials.masterSecret;
-    }
-
-    getCredentials(appId) {
-        return new AuthChecker().getCredentialsForAppId(appId);
     }
 
     sendNotificationToAlias(alias, callback) {
@@ -33,7 +27,7 @@ class UPSAPI {
 
         const body = { message, criteria };
 
-        this.post(PUSH_BATCH_URL, callback, body);
+        this.post(PUSH_URL, callback, body);
     }
 
     sendNotificationsToAliasesInBatch(aliases, callback) {
@@ -46,6 +40,26 @@ class UPSAPI {
         });
 
         this.post(PUSH_BATCH_URL, callback, notifications);
+    }
+
+    sendNotificationToVariant(variant, callback) {
+        const message = new Message(`Hello ${variant} from rhmap-push-cloud-app!`);
+        const criteria = new Criteria();
+        criteria.variants = [variant];
+
+        const body = { message, criteria };
+
+        this.post(PUSH_URL, callback, body);
+    }
+
+    sendNotificationToVariants(variants, callback) {
+        const message = new Message(`Hello ${variants.toString()} from rhmap-push-cloud-app!`);
+        const criteria = new Criteria();
+        criteria.variants = variants;
+
+        const body = { message, criteria };
+
+        this.post(PUSH_URL, callback, body);
     }
 
     post(url, callback, body) {
