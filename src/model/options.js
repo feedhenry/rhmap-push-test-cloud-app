@@ -3,13 +3,14 @@
 const Criteria = require("./criteria");
 const Config = require("./config");
 
-const DEFAULT_OPTIONS_BROADCAST = false;
+// TODO why is broadcast required? Broadcast is to send it to every device, right? https://github.com/fheng/millicore/blob/master/src/main/java/com/feedhenry/controller/UnifiedPushController.java#L71
+const DEFAULT_OPTIONS_BROADCAST = true;
 
 class Options {
     constructor() {
         this.config = new Config();
         this.criteria = new Criteria();
-        this.apps = [];
+        this.apps;
         this.broadcast = DEFAULT_OPTIONS_BROADCAST;
         this.appId;
     }

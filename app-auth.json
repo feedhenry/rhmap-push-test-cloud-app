@@ -1,6 +1,10 @@
 {
     "l2k3v4iyu3jlcy7hquocuvo7": {
-        "pushApplicationID": "249bf721-d6a6-480d-9c1f-1a0c60ba2198",
+        "pushApplicationID": "19a76440-d257-4370-b57a-1d7c3c1bb76f",
         "masterSecret": "44a5b6b5-bedc-4ebb-b597-49ce836b9c07"
+    },
+    "l2k3v4msg44oddq7wnsczsih": {
+        "pushApplicationID": "01c63659-79c0-4add-98e0-dbc906b3c251",
+        "masterSecret": "39855ee1-a781-43f3-b5a8-429273fe1b73"
     }
 }
