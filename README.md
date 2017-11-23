@@ -19,12 +19,15 @@ Use this alongside with [rhmap-push-test-driver](https://github.com/feedhenry/rh
 In order to authenticate a mobile app that is to send a notification, its pushApplicationID and masterSecret must be stored in a dictionary-like JSON file named `app-auth.json`.
 The format is like this:
 ```JSON
-// app-auth.json
 {
     "<appId>": {
-        pushApplicationID: "<pushApplicationID",
-        masterSecret: "<masterSecret>"
-    }
+        "pushApplicationID": "<pushApplicationID>",
+        "masterSecret": "<masterSecret>"
+    },
+    "<appId2>": {
+        "pushApplicationID": "<pushApplicationID2>",
+        "masterSecret": "<masterSecret2>"
+    },
 }
 ```
 Note: this is only necessary when using the push/ups routes.
